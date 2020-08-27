@@ -1,10 +1,13 @@
 Prediction project for wearable devices using machine learning
 I have taken the training and testing data from  http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har.
+
 Data Cleaning and Preparation
+
 The raw data comes in to files, training and testing.
 
 train_in <- read.csv('./pml-training.csv', header=T)
 validation <- read.csv('./pml-testing.csv', header=T)
+
 Data Partitioning
 I will be predicting classes in the testing dataset,so I will divide the training data into training and testing partitions and I will use the pml-testing.csv as a validation sample. 
 To improve the model fit i am using cross validation within the training partition and then I will go for an out-of-sample test with the testing partition.
@@ -145,8 +148,4 @@ print(ValidationPredictionResults)
 ## 19         19         B
 ## 20         20         B
 Conclusion
-Based on the data available, I am able to fit a reasonably sound model with a high degree of accuracy in predicting out of sample observations. One assumption that I used in this work that could be relaxed in future work would be to remove the section of data preparation where I limit features to those that are non-zero in the validation sample. For example, when fitting a model on all training data columns, some features that are all missing in the validation sample do included non-zero items in the training sample and are used in the decision tree models.
-
-The question I’m left with is around the data collection process. Why are there so many features in the validation sample that are missing for all 20 observations, but these have observations in the training sample? Is this just introduced by the Coursera staff for the project to see how students respond? Or is it a genuine aspect of how data is collected from these wearable technologies?
-
-Despite these remaining questions on missing data in the samples, the random forest model with cross-validation produces a surprisingly accurate model that is sufficient for predictive analytics.
+I am able to fit a reasonably sound model with a high degree of accuracy in predicting out of sample observations based on data available. One assumption that I used in this work that could be relaxed in future work would be to remove the section of data preparation where I limit features to those that are non-zero in the validation sample. For example, when fitting a model on all training data columns, some features that are all missing in the validation sample do included non-zero items in the training sample and are used in the decision tree models. The random forest model with cross-validation produces a surprisingly accurate model that is sufficient for predictive analytics.
